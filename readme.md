@@ -13,6 +13,10 @@
 # Что-то про морзе
 ...
 
+<div align="center">
+<img src="images/morse-code-table.jpg" alt="Таблица азбуки Морзе" style="max-width: 100%; height: auto;">
+</div>
+
 # Отображение на индикаторе
 ...
 
