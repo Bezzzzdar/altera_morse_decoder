@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at morse.v(23): always construct contains both blocking and non-blocking assignments File: D:/Projects/altera_morse_decoder/morse.v Line: 23

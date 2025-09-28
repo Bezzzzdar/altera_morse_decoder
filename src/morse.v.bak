@@ -1,0 +1,100 @@
+module morze(
+  input wire [3:0] oper0,
+  input wire [3:0] oper1,
+  output reg [6:0] segments0,
+  output reg [6:0] segments1,
+  output reg [6:0] segments2, 
+  output reg [6:0] segments3
+);
+
+reg [7:0] sum;          // Результат сложения (8 бит)
+reg [3:0] units;        // Единицы
+reg [3:0] tens;         // Десятки
+
+always @(*) begin 
+  
+  sum = oper0 + oper1;
+  units = sum % 10; 
+  tens = sum / 10;
+  
+  case (oper0)
+    4'h0: segments0 <= 7'b1000000; // 0
+    4'h1: segments0 <= 7'b1111001; // 1
+    4'h2: segments0 <= 7'b0100100; // 2
+    4'h3: segments0 <= 7'b0110000; // 3
+    4'h4: segments0 <= 7'b0011001; // 4
+    4'h5: segments0 <= 7'b0010010; // 5
+    4'h6: segments0 <= 7'b0000010; // 6
+    4'h7: segments0 <= 7'b1111000; // 7
+    4'h8: segments0 <= 7'b0000000; // 8
+    4'h9: segments0 <= 7'b0010000; // 9
+    4'ha: segments0 <= 7'b0001000; // A
+    4'hb: segments0 <= 7'b0000011; // b
+    4'hc: segments0 <= 7'b1000110; // C
+    4'hd: segments0 <= 7'b0100001; // d
+    4'he: segments0 <= 7'b0000110; // E
+    4'hf: segments0 <= 7'b0001110; // F
+    default: segments0 <= 7'b1111111;
+  endcase
+  
+  case (oper1)
+    4'h0: segments1 <= 7'b1000000; // 0
+    4'h1: segments1 <= 7'b1111001; // 1
+    4'h2: segments1 <= 7'b0100100; // 2
+    4'h3: segments1 <= 7'b0110000; // 3
+    4'h4: segments1 <= 7'b0011001; // 4
+    4'h5: segments1 <= 7'b0010010; // 5
+    4'h6: segments1 <= 7'b0000010; // 6
+    4'h7: segments1 <= 7'b1111000; // 7
+    4'h8: segments1 <= 7'b0000000; // 8
+    4'h9: segments1 <= 7'b0010000; // 9
+    4'ha: segments1 <= 7'b0001000; // A
+    4'hb: segments1 <= 7'b0000011; // b
+    4'hc: segments1 <= 7'b1000110; // C
+    4'hd: segments1 <= 7'b0100001; // d
+    4'he: segments1 <= 7'b0000110; // E
+    4'hf: segments1 <= 7'b0001110; // F
+    default: segments1 <= 7'b1111111;
+  endcase
+  
+  case (units)
+    4'h0: segments2 <= 7'b1000000; // 0
+    4'h1: segments2 <= 7'b1111001; // 1
+    4'h2: segments2 <= 7'b0100100; // 2
+    4'h3: segments2 <= 7'b0110000; // 3
+    4'h4: segments2 <= 7'b0011001; // 4
+    4'h5: segments2 <= 7'b0010010; // 5
+    4'h6: segments2 <= 7'b0000010; // 6
+    4'h7: segments2 <= 7'b1111000; // 7
+    4'h8: segments2 <= 7'b0000000; // 8
+    4'h9: segments2 <= 7'b0010000; // 9
+    4'ha: segments2 <= 7'b0001000; // A
+    4'hb: segments2 <= 7'b0000011; // b
+    4'hc: segments2 <= 7'b1000110; // C
+    4'hd: segments2 <= 7'b0100001; // d
+    4'he: segments2 <= 7'b0000110; // E
+    4'hf: segments2 <= 7'b0001110; // F
+    default: segments2 <= 7'b1111111;
+  endcase
+  
+  case (tens)
+    4'h0: segments3 <= 7'b1000000; // 0
+    4'h1: segments3 <= 7'b1111001; // 1
+    4'h2: segments3 <= 7'b0100100; // 2
+    4'h3: segments3 <= 7'b0110000; // 3
+    4'h4: segments3 <= 7'b0011001; // 4
+    4'h5: segments3 <= 7'b0010010; // 5
+    4'h6: segments3 <= 7'b0000010; // 6
+    4'h7: segments3 <= 7'b1111000; // 7
+    4'h8: segments3 <= 7'b0000000; // 8
+    4'h9: segments3 <= 7'b0010000; // 9
+    4'ha: segments3 <= 7'b0001000; // A
+    4'hb: segments3 <= 7'b0000011; // b
+    4'hc: segments3 <= 7'b1000110; // C
+    4'hd: segments3 <= 7'b0100001; // d
+    4'he: segments3 <= 7'b0000110; // E
+    4'hf: segments3 <= 7'b0001110; // F
+    default: segments3 <= 7'b1111111;
+  endcase
+end
+endmodule
