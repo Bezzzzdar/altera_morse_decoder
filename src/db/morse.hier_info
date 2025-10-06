@@ -126,12 +126,12 @@ morse_in => space_timer.OUTPUTSELECT
 morse_in => space_timer.OUTPUTSELECT
 morse_in => segment[6].IN1
 morse_in => always0.IN1
-segment[0] <= segment[0]$latch.DB_MAX_OUTPUT_PORT_TYPE
-segment[1] <= segment[1]$latch.DB_MAX_OUTPUT_PORT_TYPE
-segment[2] <= segment[2]$latch.DB_MAX_OUTPUT_PORT_TYPE
-segment[3] <= segment[3]$latch.DB_MAX_OUTPUT_PORT_TYPE
-segment[4] <= segment[4]$latch.DB_MAX_OUTPUT_PORT_TYPE
-segment[5] <= segment[5]$latch.DB_MAX_OUTPUT_PORT_TYPE
-segment[6] <= segment[6]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[0] << segment[0]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[1] << segment[1]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[2] << segment[2]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[3] << segment[3]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[4] << segment[4]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[5] << segment[5]$latch.DB_MAX_OUTPUT_PORT_TYPE
+segment[6] << segment[6]$latch.DB_MAX_OUTPUT_PORT_TYPE
 
 
