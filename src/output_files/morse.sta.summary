@@ -1,0 +1,53 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'morse_in'
+Slack : -38.482
+TNS   : -187.123
+
+Type  : Slow 1100mV 85C Model Hold 'morse_in'
+Slack : -35.468
+TNS   : -176.723
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'morse_in'
+Slack : -37.782
+TNS   : -15782.986
+
+Type  : Slow 1100mV 0C Model Setup 'morse_in'
+Slack : -39.264
+TNS   : -191.001
+
+Type  : Slow 1100mV 0C Model Hold 'morse_in'
+Slack : -36.235
+TNS   : -180.674
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'morse_in'
+Slack : -39.667
+TNS   : -16415.871
+
+Type  : Fast 1100mV 85C Model Setup 'morse_in'
+Slack : -20.052
+TNS   : -97.507
+
+Type  : Fast 1100mV 85C Model Hold 'morse_in'
+Slack : -18.409
+TNS   : -91.599
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'morse_in'
+Slack : -19.030
+TNS   : -7786.569
+
+Type  : Fast 1100mV 0C Model Setup 'morse_in'
+Slack : -19.017
+TNS   : -92.514
+
+Type  : Fast 1100mV 0C Model Hold 'morse_in'
+Slack : -17.473
+TNS   : -86.986
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'morse_in'
+Slack : -18.434
+TNS   : -7465.981
+
+------------------------------------------------------------
