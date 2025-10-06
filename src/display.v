@@ -1,4 +1,4 @@
-module morse_display(
+module display(
     input wire clk,                    // Тактовый сигнал
     input wire reset,                  // Сброс
     input wire [7:0] ascii_char,       // ASCII символ из модуля morse
@@ -33,32 +33,32 @@ function [6:0] ascii_to_7seg;
             "9": ascii_to_7seg = 7'b0010000;
             
             // Буквы A-Z
-            "A", "a": ascii_to_7seg = 7'b0001000;
-            "B", "b": ascii_to_7seg = 7'b0000011;
-            "C", "c": ascii_to_7seg = 7'b1000110;
-            "D", "d": ascii_to_7seg = 7'b0100001;
-            "E", "e": ascii_to_7seg = 7'b0000110;
-            "F", "f": ascii_to_7seg = 7'b0001110;
-            "G", "g": ascii_to_7seg = 7'b1000010;
-            "H", "h": ascii_to_7seg = 7'b0001011;
-            "I", "i": ascii_to_7seg = 7'b1001111;
-            "J", "j": ascii_to_7seg = 7'b1100001;
-            "K", "k": ascii_to_7seg = 7'b0001010;
-            "L", "l": ascii_to_7seg = 7'b1000111;
-            "M", "m": ascii_to_7seg = 7'b0101010;
-            "N", "n": ascii_to_7seg = 7'b0101011;
-            "O", "o": ascii_to_7seg = 7'b0100011;
-            "P", "p": ascii_to_7seg = 7'b0001100;
-            "Q", "q": ascii_to_7seg = 7'b0011000;
-            "R", "r": ascii_to_7seg = 7'b0101111;
-            "S", "s": ascii_to_7seg = 7'b0010010;
-            "T", "t": ascii_to_7seg = 7'b0000111;
-            "U", "u": ascii_to_7seg = 7'b1000001;
-            "V", "v": ascii_to_7seg = 7'b1001001;
-            "W", "w": ascii_to_7seg = 7'b1010101;
-            "X", "x": ascii_to_7seg = 7'b0001001;
-            "Y", "y": ascii_to_7seg = 7'b0010001;
-            "Z", "z": ascii_to_7seg = 7'b0100100;
+            "A": ascii_to_7seg = 7'b0001000;
+            "B": ascii_to_7seg = 7'b0000011;
+            "C": ascii_to_7seg = 7'b1000110;
+            "D": ascii_to_7seg = 7'b0100001;
+            "E": ascii_to_7seg = 7'b0000110;
+            "F": ascii_to_7seg = 7'b0001110;
+            "G": ascii_to_7seg = 7'b1000010;
+            "H": ascii_to_7seg = 7'b0001011;
+            "I": ascii_to_7seg = 7'b1001111;
+            "J": ascii_to_7seg = 7'b1100001;
+            "K": ascii_to_7seg = 7'b0001010;
+            "L": ascii_to_7seg = 7'b1000111;
+            "M": ascii_to_7seg = 7'b0101010;
+            "N": ascii_to_7seg = 7'b0101011;
+            "O": ascii_to_7seg = 7'b0100011;
+            "P": ascii_to_7seg = 7'b0001100;
+            "Q": ascii_to_7seg = 7'b0011000;
+            "R": ascii_to_7seg = 7'b0101111;
+            "S": ascii_to_7seg = 7'b0010010;
+            "T": ascii_to_7seg = 7'b0000111;
+            "U": ascii_to_7seg = 7'b1000001;
+            "V": ascii_to_7seg = 7'b1001001;
+            "W": ascii_to_7seg = 7'b1010101;
+            "X": ascii_to_7seg = 7'b0001001;
+            "Y": ascii_to_7seg = 7'b0010001;
+            "Z": ascii_to_7seg = 7'b0100100;
             
             // Пробел и специальные символы
             " ": ascii_to_7seg = 7'b1111111;  // Выключен
@@ -95,7 +95,7 @@ end
 always @(posedge clk or posedge reset) begin
     if (reset) begin
         // Сброс буфера и индикаторов
-        buffer_index <= 0;
+        buffer_index 	  <= 0;
         display_buffer[0] <= " ";
         display_buffer[1] <= " ";
         display_buffer[2] <= " ";

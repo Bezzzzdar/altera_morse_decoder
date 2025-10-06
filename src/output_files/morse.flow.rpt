@@ -1,5 +1,5 @@
 Flow report for morse
-Sun Sep 28 20:19:56 2025
+Mon Oct 06 23:42:44 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,16 +40,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Sun Sep 28 20:19:56 2025       ;
+; Flow Status                     ; Successful - Mon Oct 06 23:42:44 2025       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; morse                                       ;
-; Top-level Entity Name           ; morse                                       ;
+; Top-level Entity Name           ; morse_top                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 33 / 32,070 ( < 1 % )                       ;
-; Total registers                 ; 0                                           ;
-; Total pins                      ; 9 / 457 ( 2 % )                             ;
+; Logic utilization (in ALMs)     ; 54 / 32,070 ( < 1 % )                       ;
+; Total registers                 ; 119                                         ;
+; Total pins                      ; 46 / 457 ( 10 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
 ; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/28/2025 20:17:49 ;
+; Start date & time ; 10/06/2025 23:41:25 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; morse               ;
 +-------------------+---------------------+
@@ -78,16 +78,17 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 59850985067563.175907986905928         ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 2543960877323.175978328518476          ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top            ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; morse_top   ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; morse_top   ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; morse_top   ; Top            ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --             ;
+; TOP_LEVEL_ENTITY                    ; morse_top                              ; morse         ; --          ; --             ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 
 
@@ -96,12 +97,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4849 MB             ; 00:00:18                           ;
-; Fitter               ; 00:01:17     ; 1.1                     ; 6781 MB             ; 00:02:46                           ;
-; Assembler            ; 00:00:10     ; 1.0                     ; 4832 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.1                     ; 5131 MB             ; 00:00:04                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4734 MB             ; 00:00:01                           ;
-; Total                ; 00:01:43     ; --                      ; --                  ; 00:03:14                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4854 MB             ; 00:00:16                           ;
+; Fitter               ; 00:00:47     ; 1.1                     ; 6779 MB             ; 00:01:21                           ;
+; Assembler            ; 00:00:09     ; 1.0                     ; 4835 MB             ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:04     ; 1.1                     ; 5139 MB             ; 00:00:04                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4741 MB             ; 00:00:01                           ;
+; Total                ; 00:01:11     ; --                      ; --                  ; 00:01:47                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

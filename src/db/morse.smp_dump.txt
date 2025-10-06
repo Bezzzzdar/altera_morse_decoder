@@ -1,0 +1,7 @@
+
+State Machine - |morse_top|morse:morse_decoder|state
+Name state.LETTER_END state.SYMBOL_END state.RECEIVING state.IDLE 
+state.IDLE 0 0 0 0 
+state.RECEIVING 0 0 1 1 
+state.SYMBOL_END 0 1 0 1 
+state.LETTER_END 1 0 0 1 
