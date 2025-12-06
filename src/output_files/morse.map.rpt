@@ -1,5 +1,5 @@
 Analysis & Synthesis report for morse
-Sun Sep 28 13:31:53 2025
+Sun Dec 07 00:10:17 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,14 +13,16 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. User-Specified and Inferred Latches
-  9. Logic Cells Representing Combinational Loops
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
  10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: Top-level Entity: |morse
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |morse
+ 14. Parameter Settings for User Entity Instance: uart_tx:uart_inst
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -46,14 +48,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Sep 28 13:31:53 2025       ;
+; Analysis & Synthesis Status     ; Successful - Sun Dec 07 00:10:17 2025       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; morse                                       ;
 ; Top-level Entity Name           ; morse                                       ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 0                                           ;
-; Total pins                      ; 9                                           ;
+; Total registers                 ; 165                                         ;
+; Total pins                      ; 4                                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -166,120 +168,84 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                               ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                 ; Library ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------+---------+
-; morse.v                          ; yes             ; User Verilog HDL File  ; D:/Projects/altera_morse_decoder/src/morse.v ;         ;
-+----------------------------------+-----------------+------------------------+----------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                 ;
++----------------------------------+-----------------+------------------------+------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                   ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------------------------+---------+
+; morse.v                          ; yes             ; User Verilog HDL File  ; D:/Projects/altera_morse_decoder/src/morse.v   ;         ;
+; uart_tx.v                        ; yes             ; User Verilog HDL File  ; D:/Projects/altera_morse_decoder/src/uart_tx.v ;         ;
++----------------------------------+-----------------+------------------------+------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 32          ;
-;                                             ;             ;
-; Combinational ALUT usage for logic          ; 59          ;
-;     -- 7 input functions                    ; 0           ;
-;     -- 6 input functions                    ; 5           ;
-;     -- 5 input functions                    ; 5           ;
-;     -- 4 input functions                    ; 39          ;
-;     -- <=3 input functions                  ; 10          ;
-;                                             ;             ;
-; Dedicated logic registers                   ; 0           ;
-;                                             ;             ;
-; I/O pins                                    ; 9           ;
-;                                             ;             ;
-; Total DSP Blocks                            ; 0           ;
-;                                             ;             ;
-; Maximum fan-out node                        ; reset~input ;
-; Maximum fan-out                             ; 40          ;
-; Total fan-out                               ; 281         ;
-; Average fan-out                             ; 3.65        ;
-+---------------------------------------------+-------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 120       ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 215       ;
+;     -- 7 input functions                    ; 2         ;
+;     -- 6 input functions                    ; 20        ;
+;     -- 5 input functions                    ; 23        ;
+;     -- 4 input functions                    ; 24        ;
+;     -- <=3 input functions                  ; 146       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 165       ;
+;                                             ;           ;
+; I/O pins                                    ; 4         ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 165       ;
+; Total fan-out                               ; 1208      ;
+; Average fan-out                             ; 3.11      ;
++---------------------------------------------+-----------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |morse                     ; 59 (59)             ; 0 (0)                     ; 0                 ; 0          ; 9    ; 0            ; |morse              ; morse       ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name      ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------+-------------+--------------+
+; |morse                     ; 215 (174)           ; 165 (136)                 ; 0                 ; 0          ; 4    ; 0            ; |morse                   ; morse       ; work         ;
+;    |uart_tx:uart_inst|     ; 41 (41)             ; 29 (29)                   ; 0                 ; 0          ; 0    ; 0            ; |morse|uart_tx:uart_inst ; uart_tx     ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                  ;
-+-----------------------------------------------------+-----------------------+------------------------+
-; Latch Name                                          ; Latch Enable Signal   ; Free of Timing Hazards ;
-+-----------------------------------------------------+-----------------------+------------------------+
-; segment[0]$latch                                    ; Selector7             ; yes                    ;
-; segment[1]$latch                                    ; Selector7             ; yes                    ;
-; segment[2]$latch                                    ; Selector7             ; yes                    ;
-; segment[4]$latch                                    ; Selector7             ; yes                    ;
-; segment[5]$latch                                    ; Selector7             ; yes                    ;
-; segment[6]$latch                                    ; Selector7             ; yes                    ;
-; state.LETTER_END_3325                               ; Selector3             ; yes                    ;
-; current_ascii[6]                                    ; state.LETTER_END_3325 ; yes                    ;
-; current_ascii[0]                                    ; state.LETTER_END_3325 ; yes                    ;
-; current_ascii[5]                                    ; state.LETTER_END_3325 ; yes                    ;
-; state.IDLE_3358                                     ; Selector3             ; yes                    ;
-; state.SYMBOL_END_3336                               ; Selector3             ; yes                    ;
-; state.RECEIVING_3347                                ; Selector3             ; yes                    ;
-; Number of user-specified and inferred latches = 13  ;                       ;                        ;
-+-----------------------------------------------------+-----------------------+------------------------+
-Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
++------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                 ;
++---------------------------------------+--------------------------------------------+
+; Register name                         ; Reason for Removal                         ;
++---------------------------------------+--------------------------------------------+
+; uart_tx:uart_inst|shift_reg[9]        ; Stuck at VCC due to stuck port data_in     ;
+; current_char[7]                       ; Merged with current_char[6]                ;
+; output_buffer[7]                      ; Merged with output_buffer[6]               ;
+; uart_data[6]                          ; Merged with uart_data[7]                   ;
+; uart_tx:uart_inst|shift_reg[7]        ; Merged with uart_tx:uart_inst|shift_reg[8] ;
+; current_char[6]                       ; Stuck at GND due to stuck port data_in     ;
+; output_buffer[6]                      ; Stuck at GND due to stuck port data_in     ;
+; uart_data[7]                          ; Stuck at GND due to stuck port data_in     ;
+; uart_tx:uart_inst|shift_reg[0]        ; Merged with uart_tx:uart_inst|shift_reg[8] ;
+; Total Number of Removed Registers = 9 ;                                            ;
++---------------------------------------+--------------------------------------------+
 
 
-+-------------------------------------------------------------+
-; Logic Cells Representing Combinational Loops                ;
-+--------------------------------------------------------+----+
-; Logic Cell Name                                        ;    ;
-+--------------------------------------------------------+----+
-; LessThan0~0                                            ;    ;
-; Selector16~0                                           ;    ;
-; Selector17~0                                           ;    ;
-; Selector18~0                                           ;    ;
-; Selector19~0                                           ;    ;
-; Selector20~0                                           ;    ;
-; Selector21~0                                           ;    ;
-; Selector22~0                                           ;    ;
-; Selector23~0                                           ;    ;
-; Selector27~0                                           ;    ;
-; Selector31~0                                           ;    ;
-; Selector36~0                                           ;    ;
-; Selector37~0                                           ;    ;
-; Selector39~0                                           ;    ;
-; Selector40~0                                           ;    ;
-; Selector35~0                                           ;    ;
-; Selector38~0                                           ;    ;
-; Selector33~0                                           ;    ;
-; Selector34~0                                           ;    ;
-; Selector32~0                                           ;    ;
-; Selector30~0                                           ;    ;
-; Selector29~0                                           ;    ;
-; Selector28~0                                           ;    ;
-; Selector26~0                                           ;    ;
-; Selector24~0                                           ;    ;
-; Selector25~0                                           ;    ;
-; Selector41~0                                           ;    ;
-; Selector42~0                                           ;    ;
-; Selector43~0                                           ;    ;
-; Selector44~0                                           ;    ;
-; Selector45~0                                           ;    ;
-; Selector46~0                                           ;    ;
-; Number of logic cells representing combinational loops ; 32 ;
-+--------------------------------------------------------+----+
-Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
++--------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                          ;
++-----------------+---------------------------+----------------------------------------+
+; Register name   ; Reason for Removal        ; Registers Removed due to This Register ;
++-----------------+---------------------------+----------------------------------------+
+; current_char[6] ; Stuck at GND              ; output_buffer[6], uart_data[7]         ;
+;                 ; due to stuck port data_in ;                                        ;
++-----------------+---------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -287,36 +253,71 @@ Note: All cells listed above may not be present at the end of synthesis due to v
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 165   ;
+; Number of registers using Synchronous Clear  ; 120   ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 29    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 88    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |morse|segment             ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |morse|space_timer         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; uart_tx:uart_inst|tx                   ; 2       ;
+; uart_tx:uart_inst|shift_reg[8]         ; 3       ;
+; uart_tx:uart_inst|shift_reg[1]         ; 1       ;
+; uart_tx:uart_inst|shift_reg[2]         ; 1       ;
+; uart_tx:uart_inst|shift_reg[3]         ; 1       ;
+; uart_tx:uart_inst|shift_reg[4]         ; 1       ;
+; uart_tx:uart_inst|shift_reg[5]         ; 1       ;
+; uart_tx:uart_inst|shift_reg[6]         ; 1       ;
+; Total number of inverted registers = 8 ;         ;
++----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |morse|uart_tx:uart_inst|bit_index[3] ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |morse|current_char[3]                ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |morse|debounce_counter_morse[17]     ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |morse|debounce_counter_reset[15]     ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |morse|press_counter[6]               ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |morse|release_counter[21]            ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |morse|uart_tx:uart_inst|counter[0]   ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |morse|morse_pattern[5]               ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |morse|output_buffer[0]               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
 
 
 +-----------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Top-level Entity: |morse ;
-+----------------+---------+--------------------------------------------+
-; Parameter Name ; Value   ; Type                                       ;
-+----------------+---------+--------------------------------------------+
-; DOT_TIME       ; 1000000 ; Signed Integer                             ;
-; DASH_TIME      ; 3000000 ; Signed Integer                             ;
-; SYMBOL_SPACE   ; 3000000 ; Signed Integer                             ;
-; WORD_SPACE     ; 7000000 ; Signed Integer                             ;
-+----------------+---------+--------------------------------------------+
++----------------+-----------+------------------------------------------+
+; Parameter Name ; Value     ; Type                                     ;
++----------------+-----------+------------------------------------------+
+; DOT_TIME       ; 25000000  ; Signed Integer                           ;
+; DASH_TIME      ; 75000000  ; Signed Integer                           ;
+; SYMBOL_GAP     ; 25000000  ; Signed Integer                           ;
+; LETTER_GAP     ; 125000000 ; Signed Integer                           ;
++----------------+-----------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_tx:uart_inst ;
++----------------+----------+------------------------------------+
+; Parameter Name ; Value    ; Type                               ;
++----------------+----------+------------------------------------+
+; CLOCK_FREQ     ; 50000000 ; Signed Integer                     ;
+; BAUD_RATE      ; 9600     ; Signed Integer                     ;
++----------------+----------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -325,22 +326,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 60                          ;
-;     arith             ; 31                          ;
-;         1 data inputs ; 1                           ;
-;         4 data inputs ; 29                          ;
-;         5 data inputs ; 1                           ;
-;     normal            ; 29                          ;
-;         0 data inputs ; 1                           ;
-;         2 data inputs ; 3                           ;
-;         3 data inputs ; 6                           ;
-;         4 data inputs ; 10                          ;
-;         5 data inputs ; 4                           ;
-;         6 data inputs ; 5                           ;
-; boundary_port         ; 9                           ;
+; arriav_ff             ; 165                         ;
+;     CLR               ; 2                           ;
+;     ENA               ; 21                          ;
+;     ENA CLR           ; 11                          ;
+;     ENA CLR SCLR      ; 16                          ;
+;     ENA SCLR          ; 40                          ;
+;     SCLR              ; 64                          ;
+;     plain             ; 11                          ;
+; arriav_lcell_comb     ; 216                         ;
+;     arith             ; 120                         ;
+;         1 data inputs ; 120                         ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 94                          ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 12                          ;
+;         4 data inputs ; 24                          ;
+;         5 data inputs ; 23                          ;
+;         6 data inputs ; 20                          ;
+; boundary_port         ; 4                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 7.00                        ;
-; Average LUT depth     ; 4.78                        ;
+; Max LUT depth         ; 4.10                        ;
+; Average LUT depth     ; 2.80                        ;
 +-----------------------+-----------------------------+
 
 
@@ -349,7 +358,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -359,120 +368,43 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Sep 28 13:31:38 2025
+    Info: Processing started: Sun Dec 07 00:10:00 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off morse -c morse
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file morse.v
     Info (12023): Found entity 1: morse File: D:/Projects/altera_morse_decoder/src/morse.v Line: 1
 Warning (12019): Can't analyze file -- file seven_segment_controller.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file uart_tx.v
+    Info (12023): Found entity 1: uart_tx File: D:/Projects/altera_morse_decoder/src/uart_tx.v Line: 1
 Info (12127): Elaborating entity "morse" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at morse.v(56): object "morse_rom" assigned a value but never read File: D:/Projects/altera_morse_decoder/src/morse.v Line: 56
-Warning (10855): Verilog HDL warning at morse.v(58): initial value for variable morse_rom should be constant File: D:/Projects/altera_morse_decoder/src/morse.v Line: 58
-Warning (10230): Verilog HDL assignment warning at morse.v(171): truncated value with size 32 to match size of target (3) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 171
-Warning (10230): Verilog HDL assignment warning at morse.v(110): truncated value with size 32 to match size of target (8) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 110
-Warning (10230): Verilog HDL assignment warning at morse.v(112): truncated value with size 32 to match size of target (8) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 112
-Warning (10240): Verilog HDL Always Construct warning at morse.v(128): inferring latch(es) for variable "state", which holds its previous value in one or more paths through the always construct File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (10240): Verilog HDL Always Construct warning at morse.v(128): inferring latch(es) for variable "timer", which holds its previous value in one or more paths through the always construct File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (10240): Verilog HDL Always Construct warning at morse.v(128): inferring latch(es) for variable "received_pattern", which holds its previous value in one or more paths through the always construct File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (10240): Verilog HDL Always Construct warning at morse.v(128): inferring latch(es) for variable "received_length", which holds its previous value in one or more paths through the always construct File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (10240): Verilog HDL Always Construct warning at morse.v(128): inferring latch(es) for variable "segment", which holds its previous value in one or more paths through the always construct File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (10240): Verilog HDL Always Construct warning at morse.v(128): inferring latch(es) for variable "current_ascii", which holds its previous value in one or more paths through the always construct File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (10030): Net "morse_rom[0..35]" at morse.v(56) has no driver or initial value, using a default initial value '0' File: D:/Projects/altera_morse_decoder/src/morse.v Line: 56
-Info (10041): Inferred latch for "current_ascii[0]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[1]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[2]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[3]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[4]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[5]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[6]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "current_ascii[7]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[0]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[1]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[2]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[3]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[4]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[5]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "segment[6]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_length[0]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_length[1]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_length[2]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_pattern[0]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_pattern[1]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_pattern[2]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_pattern[3]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "received_pattern[4]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[0]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[1]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[2]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[3]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[4]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[5]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[6]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[7]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[8]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[9]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[10]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[11]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[12]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[13]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[14]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[15]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[16]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[17]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[18]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[19]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[20]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[21]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[22]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[23]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[24]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[25]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[26]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[27]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[28]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[29]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[30]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "timer[31]" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "state.LETTER_END" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "state.SYMBOL_END" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "state.RECEIVING" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (10041): Inferred latch for "state.IDLE" at morse.v(128) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_length[2]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_length[1]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_length[0]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_pattern[4]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_pattern[3]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_pattern[2]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_pattern[1]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (14025): LATCH primitive "received_pattern[0]" is permanently disabled File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
-    Info (13026): Duplicate LATCH primitive "segment[1]$latch" merged with LATCH primitive "segment[0]$latch" File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Info (13026): Duplicate LATCH primitive "segment[2]$latch" merged with LATCH primitive "segment[0]$latch" File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Info (13026): Duplicate LATCH primitive "segment[4]$latch" merged with LATCH primitive "segment[0]$latch" File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Info (13026): Duplicate LATCH primitive "segment[5]$latch" merged with LATCH primitive "segment[0]$latch" File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Info (13026): Duplicate LATCH primitive "segment[6]$latch" merged with LATCH primitive "segment[0]$latch" File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (13012): Latch segment[0]$latch has unsafe behavior File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal state.LETTER_END_3325 File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (13012): Latch state.LETTER_END_3325 has unsafe behavior File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal state.SYMBOL_END_3336 File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (13012): Latch state.IDLE_3358 has unsafe behavior File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal state.LETTER_END_3325 File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (13012): Latch state.RECEIVING_3347 has unsafe behavior File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal state.IDLE_3358 File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "segment[3]" is stuck at VCC File: D:/Projects/altera_morse_decoder/src/morse.v Line: 128
+Warning (10036): Verilog HDL or VHDL warning at morse.v(29): object "morse_prev_stable" assigned a value but never read File: D:/Projects/altera_morse_decoder/src/morse.v Line: 29
+Warning (10036): Verilog HDL or VHDL warning at morse.v(38): object "morse_pressed" assigned a value but never read File: D:/Projects/altera_morse_decoder/src/morse.v Line: 38
+Warning (10230): Verilog HDL assignment warning at morse.v(84): truncated value with size 32 to match size of target (20) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 84
+Warning (10230): Verilog HDL assignment warning at morse.v(93): truncated value with size 32 to match size of target (20) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 93
+Warning (10230): Verilog HDL assignment warning at morse.v(137): truncated value with size 32 to match size of target (4) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 137
+Warning (10230): Verilog HDL assignment warning at morse.v(139): truncated value with size 32 to match size of target (16) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 139
+Warning (10230): Verilog HDL assignment warning at morse.v(140): truncated value with size 32 to match size of target (4) File: D:/Projects/altera_morse_decoder/src/morse.v Line: 140
+Warning (10030): Net "morse_memory.data_a" at morse.v(44) has no driver or initial value, using a default initial value '0' File: D:/Projects/altera_morse_decoder/src/morse.v Line: 44
+Warning (10030): Net "morse_memory.waddr_a" at morse.v(44) has no driver or initial value, using a default initial value '0' File: D:/Projects/altera_morse_decoder/src/morse.v Line: 44
+Warning (10030): Net "morse_memory.we_a" at morse.v(44) has no driver or initial value, using a default initial value '0' File: D:/Projects/altera_morse_decoder/src/morse.v Line: 44
+Info (12128): Elaborating entity "uart_tx" for hierarchy "uart_tx:uart_inst" File: D:/Projects/altera_morse_decoder/src/morse.v Line: 186
+Warning (10230): Verilog HDL assignment warning at uart_tx.v(36): truncated value with size 32 to match size of target (16) File: D:/Projects/altera_morse_decoder/src/uart_tx.v Line: 36
+Warning (10230): Verilog HDL assignment warning at uart_tx.v(40): truncated value with size 32 to match size of target (4) File: D:/Projects/altera_morse_decoder/src/uart_tx.v Line: 40
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "morse_memory" is uninferred due to inappropriate RAM size File: D:/Projects/altera_morse_decoder/src/morse.v Line: 44
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "D:/Projects/altera_morse_decoder/src/db/morse.ram0_morse_7162e0b.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 68 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 7 output pins
-    Info (21061): Implemented 59 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 4842 megabytes
-    Info: Processing ended: Sun Sep 28 13:31:53 2025
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:35
+Info (21057): Implemented 230 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 1 output pins
+    Info (21061): Implemented 226 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 15 warnings
+    Info: Peak virtual memory: 4824 megabytes
+    Info: Processing ended: Sun Dec 07 00:10:17 2025
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:33
 
 
