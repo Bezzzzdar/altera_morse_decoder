@@ -1,0 +1,35 @@
+module morse_top(
+    input clk,
+    input reset_btn,
+    input morse_btn,
+    output uart_tx_out
+);
+    wire reset_stable;
+    wire morse_stable;
+    wire [7:0] decoded_char;
+
+    // Подавление дребезга
+    debounce db_reset(.clk(clk), .btn(reset_btn), .btn_stable(reset_stable));
+    debounce db_morse(.clk(clk), .btn(morse_btn), .btn_stable(morse_stable));
+
+    // Декодер Морзе
+    morse_decoder decoder(.clk(clk), .reset_stable(reset_stable), .morse_stable(morse_stable), .output_buffer(decoded_char));
+
+    // UART передача
+    reg uart_send;
+    wire uart_busy;
+    reg [7:0] uart_data;
+
+    always @(posedge clk) begin
+        if (!uart_busy) begin
+            uart_data <= decoded_char;
+            uart_send <= 1'b1;
+        end else begin
+            uart_send <= 1'b0;
+        end
+    end
+
+    uart_tx #(.CLOCK_FREQ(50_000_000), .BAUD_RATE(9600))
+        uart_inst(.clk(clk), .rst(reset_btn), .data_in(uart_data), .send(uart_send), .tx(uart_tx_out), .busy(uart_busy));
+
+endmodule

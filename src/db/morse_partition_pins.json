@@ -4,7 +4,31 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "uart_tx_out",
+					"name" : "output_buffer[0]",
+					"strict" : false
+				},
+				{
+					"name" : "output_buffer[1]",
+					"strict" : false
+				},
+				{
+					"name" : "output_buffer[2]",
+					"strict" : false
+				},
+				{
+					"name" : "output_buffer[3]",
+					"strict" : false
+				},
+				{
+					"name" : "output_buffer[4]",
+					"strict" : false
+				},
+				{
+					"name" : "output_buffer[5]",
+					"strict" : false
+				},
+				{
+					"name" : "reset_stable",
 					"strict" : false
 				},
 				{
@@ -12,11 +36,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "reset_btn",
-					"strict" : false
-				},
-				{
-					"name" : "morse_btn",
+					"name" : "morse_stable",
 					"strict" : false
 				}
 			]
