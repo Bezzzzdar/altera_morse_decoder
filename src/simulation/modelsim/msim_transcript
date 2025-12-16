@@ -1,0 +1,23 @@
+# Reading P:/Quartus/modelsim_ase/tcl/vsim/pref.tcl
+# do morse_run_msim_gate_verilog.do
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work gate_work 
+# Copying P:/Quartus/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+. {morse.vo}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:37 on Dec 16,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+." morse.vo 
+# -- Compiling module morse_top
+# 
+# Top level modules:
+# 	morse_top
+# End time: 14:24:37 on Dec 16,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for morse
-Mon Oct 06 23:41:37 2025
+Tue Dec 16 14:23:43 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,16 +13,15 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |morse_top|morse:morse_decoder|state
-  9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: morse:morse_decoder
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: morse_input:u_input
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -48,14 +47,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Oct 06 23:41:37 2025       ;
+; Analysis & Synthesis Status     ; Successful - Tue Dec 16 14:23:43 2025       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; morse                                       ;
 ; Top-level Entity Name           ; morse_top                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 108                                         ;
-; Total pins                      ; 46                                          ;
+; Total registers                 ; 133                                         ;
+; Total pins                      ; 18                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -172,15 +171,16 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                ;
-+----------------------------------+-----------------+------------------------+-----------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                  ; Library ;
-+----------------------------------+-----------------+------------------------+-----------------------------------------------+---------+
-; morse.v                          ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/morse.v     ;         ;
-; display.v                        ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/display.v   ;         ;
-; morse_top.v                      ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/morse_top.v ;         ;
-+----------------------------------+-----------------+------------------------+-----------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                       ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                         ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------+---------+
+; morse_top.v                      ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/morse_top.v        ;         ;
+; morse_input.v                    ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/morse_input.v      ;         ;
+; morse_to_hex.v                   ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/morse_to_hex.v     ;         ;
+; seven_seg_driver.v               ; yes             ; User Verilog HDL File  ; D:/Repos/altera_morse_decoder/src/seven_seg_driver.v ;         ;
++----------------------------------+-----------------+------------------------+------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -188,117 +188,574 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 59        ;
+; Estimate of Logic utilization (ALMs needed) ; 109       ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 95        ;
-;     -- 7 input functions                    ; 1         ;
-;     -- 6 input functions                    ; 3         ;
-;     -- 5 input functions                    ; 3         ;
-;     -- 4 input functions                    ; 9         ;
-;     -- <=3 input functions                  ; 79        ;
+; Combinational ALUT usage for logic          ; 194       ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 24        ;
+;     -- 5 input functions                    ; 25        ;
+;     -- 4 input functions                    ; 29        ;
+;     -- <=3 input functions                  ; 116       ;
 ;                                             ;           ;
-; Dedicated logic registers                   ; 108       ;
+; Dedicated logic registers                   ; 133       ;
 ;                                             ;           ;
-; I/O pins                                    ; 46        ;
+; I/O pins                                    ; 18        ;
 ;                                             ;           ;
 ; Total DSP Blocks                            ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 108       ;
-; Total fan-out                               ; 734       ;
-; Average fan-out                             ; 2.49      ;
+; Maximum fan-out                             ; 133       ;
+; Total fan-out                               ; 1062      ;
+; Average fan-out                             ; 2.93      ;
 +---------------------------------------------+-----------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
-; |morse_top                 ; 95 (0)              ; 108 (0)                   ; 0                 ; 0          ; 46   ; 0            ; |morse_top                      ; morse_top   ; work         ;
-;    |display:display_unit|  ; 45 (45)             ; 63 (63)                   ; 0                 ; 0          ; 0    ; 0            ; |morse_top|display:display_unit ; display     ; work         ;
-;    |morse:morse_decoder|   ; 50 (50)             ; 45 (45)                   ; 0                 ; 0          ; 0    ; 0            ; |morse_top|morse:morse_decoder  ; morse       ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                              ;
++--------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------+------------------+--------------+
+; Compilation Hierarchy Node     ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                  ; Entity Name      ; Library Name ;
++--------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------+------------------+--------------+
+; |morse_top                     ; 194 (0)             ; 133 (0)                   ; 0                 ; 0          ; 18   ; 0            ; |morse_top                           ; morse_top        ; work         ;
+;    |morse_input:u_input|       ; 180 (180)           ; 126 (126)                 ; 0                 ; 0          ; 0    ; 0            ; |morse_top|morse_input:u_input       ; morse_input      ; work         ;
+;    |morse_to_hex:u_hex|        ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |morse_top|morse_to_hex:u_hex        ; morse_to_hex     ; work         ;
+;    |seven_seg_driver:u_driver| ; 6 (6)               ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |morse_top|seven_seg_driver:u_driver ; seven_seg_driver ; work         ;
++--------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------------+
-; State Machine - |morse_top|morse:morse_decoder|state                                  ;
-+------------------+------------------+------------------+-----------------+------------+
-; Name             ; state.LETTER_END ; state.SYMBOL_END ; state.RECEIVING ; state.IDLE ;
-+------------------+------------------+------------------+-----------------+------------+
-; state.IDLE       ; 0                ; 0                ; 0               ; 0          ;
-; state.RECEIVING  ; 0                ; 0                ; 1               ; 1          ;
-; state.SYMBOL_END ; 0                ; 1                ; 0               ; 1          ;
-; state.LETTER_END ; 1                ; 0                ; 0               ; 1          ;
-+------------------+------------------+------------------+-----------------+------------+
++----------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                               ;
++-----------------------------------------+----------------------------------------+
+; Register name                           ; Reason for Removal                     ;
++-----------------------------------------+----------------------------------------+
+; morse_input:u_input|leds[3..7]          ; Stuck at GND due to stuck port data_in ;
+; morse_input:u_input|morse_memory~0      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~1      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~2      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~3      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~4      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~5      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~6      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~7      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~8      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~9      ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~10     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~11     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~12     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~13     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~14     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~15     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~16     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~17     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~18     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~19     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~20     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~21     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~22     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~23     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~24     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~25     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~26     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~27     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~28     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~29     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~30     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~31     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~32     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~33     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~34     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~35     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~36     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~37     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~38     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~39     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~40     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~41     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~42     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~43     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~44     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~45     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~46     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~47     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~48     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~49     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~50     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~51     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~52     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~53     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~54     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~55     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~56     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~57     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~58     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~59     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~60     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~61     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~62     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~63     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~64     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~65     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~66     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~67     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~68     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~69     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~70     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~71     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~72     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~73     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~74     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~75     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~76     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~77     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~78     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~79     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~80     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~81     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~82     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~83     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~84     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~85     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~86     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~87     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~88     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~89     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~90     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~91     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~92     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~93     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~94     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~95     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~96     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~97     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~98     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~99     ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~100    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~101    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~102    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~103    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~104    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~105    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~106    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~107    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~108    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~109    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~110    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~111    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~112    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~113    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~114    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~115    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~116    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~117    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~118    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~119    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~120    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~121    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~122    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~123    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~124    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~125    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~126    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~127    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~128    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~129    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~130    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~131    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~132    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~133    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~134    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~135    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~136    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~137    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~138    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~139    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~140    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~141    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~142    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~143    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~144    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~145    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~146    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~147    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~148    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~149    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~150    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~151    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~152    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~153    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~154    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~155    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~156    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~157    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~158    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~159    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~160    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~161    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~162    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~163    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~164    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~165    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~166    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~167    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~168    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~169    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~170    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~171    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~172    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~173    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~174    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~175    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~176    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~177    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~178    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~179    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~180    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~181    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~182    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~183    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~184    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~185    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~186    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~187    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~188    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~189    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~190    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~191    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~192    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~193    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~194    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~195    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~196    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~197    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~198    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~199    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~200    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~201    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~202    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~203    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~204    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~205    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~206    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~207    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~208    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~209    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~210    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~211    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~212    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~213    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~214    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~215    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~216    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~217    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~218    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~219    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~220    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~221    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~222    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~223    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~224    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~225    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~226    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~227    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~228    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~229    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~230    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~231    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~232    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~233    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~234    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~235    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~236    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~237    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~238    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~239    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~240    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~241    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~242    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~243    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~244    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~245    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~246    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~247    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~248    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~249    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~250    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~251    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~252    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~253    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~254    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~255    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~256    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~257    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~258    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~259    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~260    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~261    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~262    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~263    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~264    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~265    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~266    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~267    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~268    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~269    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~270    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~271    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~272    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~273    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~274    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~275    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~276    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~277    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~278    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~279    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~280    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~281    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~282    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~283    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~284    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~285    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~286    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~287    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~288    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~289    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~290    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~291    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~292    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~293    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~294    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~295    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~296    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~297    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~298    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~299    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~300    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~301    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~302    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~303    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~304    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~305    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~306    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~307    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~308    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~309    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~310    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~311    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~312    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~313    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~314    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~315    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~316    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~317    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~318    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~319    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~320    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~321    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~322    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~323    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~324    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~325    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~326    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~327    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~328    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~329    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~330    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~331    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~332    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~333    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~334    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~335    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~336    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~337    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~338    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~339    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~340    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~341    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~342    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~343    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~344    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~345    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~346    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~347    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~348    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~349    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~350    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~351    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~352    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~353    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~354    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~355    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~356    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~357    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~358    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~359    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~360    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~361    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~362    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~363    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~364    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~365    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~366    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~367    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~368    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~369    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~370    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~371    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~372    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~373    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~374    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~375    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~376    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~377    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~378    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~379    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~380    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~381    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~382    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~383    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~384    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~385    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~386    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~387    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~388    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~389    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~390    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~391    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~392    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~393    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~394    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~395    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~396    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~397    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~398    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~399    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~400    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~401    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~402    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~403    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~404    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~405    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~406    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~407    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~408    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~409    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~410    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~411    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~412    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~413    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~414    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~415    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~416    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~417    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~418    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~419    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~420    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~421    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~422    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~423    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~424    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~425    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~426    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~427    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~428    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~429    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~430    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~431    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~432    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~433    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~434    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~435    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~436    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~437    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~438    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~439    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~440    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~441    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~442    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~443    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~444    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~445    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~446    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~447    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~448    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~449    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~450    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~451    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~452    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~453    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~454    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~455    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~456    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~457    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~458    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~459    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~460    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~461    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~462    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~463    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~464    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~465    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~466    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~467    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~468    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~469    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~470    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~471    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~472    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~473    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~474    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~475    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~476    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~477    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~478    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~479    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~480    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~481    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~482    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~483    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~484    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~485    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~486    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~487    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~488    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~489    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~490    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~491    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~492    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~493    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~494    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~495    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~496    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~497    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~498    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~499    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~500    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~501    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~502    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~503    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~504    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~505    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~506    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~507    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~508    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~509    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~510    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|morse_memory~511    ; Stuck at GND due to stuck port clock   ;
+; morse_input:u_input|output_buffer[6,7]  ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 519 ;                                        ;
++-----------------------------------------+----------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                 ;
-+--------------------------------------------+-------------------------------------------------------+
-; Register name                              ; Reason for Removal                                    ;
-+--------------------------------------------+-------------------------------------------------------+
-; morse:morse_decoder|ascii_char[7]          ; Stuck at GND due to stuck port data_in                ;
-; display:display_unit|display_buffer[0][7]  ; Stuck at GND due to stuck port data_in                ;
-; display:display_unit|display_buffer[1][7]  ; Stuck at GND due to stuck port data_in                ;
-; display:display_unit|display_buffer[2][7]  ; Stuck at GND due to stuck port data_in                ;
-; display:display_unit|display_buffer[3][7]  ; Stuck at GND due to stuck port data_in                ;
-; display:display_unit|display_buffer[4][7]  ; Stuck at GND due to stuck port data_in                ;
-; display:display_unit|display_buffer[5][7]  ; Stuck at GND due to stuck port data_in                ;
-; morse:morse_decoder|received_pattern[0..4] ; Lost fanout                                           ;
-; morse:morse_decoder|timer[0..31]           ; Lost fanout                                           ;
-; morse:morse_decoder|ascii_char[2..4]       ; Merged with morse:morse_decoder|ascii_char[1]         ;
-; morse:morse_decoder|ascii_char[6]          ; Merged with morse:morse_decoder|ascii_char[5]         ;
-; display:display_unit|display_buffer[0][4]  ; Merged with display:display_unit|display_buffer[0][1] ;
-; display:display_unit|display_buffer[0][3]  ; Merged with display:display_unit|display_buffer[0][1] ;
-; display:display_unit|display_buffer[0][2]  ; Merged with display:display_unit|display_buffer[0][1] ;
-; display:display_unit|display_buffer[0][6]  ; Merged with display:display_unit|display_buffer[0][5] ;
-; display:display_unit|display_buffer[1][4]  ; Merged with display:display_unit|display_buffer[1][1] ;
-; display:display_unit|display_buffer[1][3]  ; Merged with display:display_unit|display_buffer[1][1] ;
-; display:display_unit|display_buffer[1][2]  ; Merged with display:display_unit|display_buffer[1][1] ;
-; display:display_unit|display_buffer[1][6]  ; Merged with display:display_unit|display_buffer[1][5] ;
-; display:display_unit|display_buffer[2][4]  ; Merged with display:display_unit|display_buffer[2][1] ;
-; display:display_unit|display_buffer[2][3]  ; Merged with display:display_unit|display_buffer[2][1] ;
-; display:display_unit|display_buffer[2][2]  ; Merged with display:display_unit|display_buffer[2][1] ;
-; display:display_unit|display_buffer[2][6]  ; Merged with display:display_unit|display_buffer[2][5] ;
-; display:display_unit|display_buffer[3][4]  ; Merged with display:display_unit|display_buffer[3][1] ;
-; display:display_unit|display_buffer[3][3]  ; Merged with display:display_unit|display_buffer[3][1] ;
-; display:display_unit|display_buffer[3][2]  ; Merged with display:display_unit|display_buffer[3][1] ;
-; display:display_unit|display_buffer[3][6]  ; Merged with display:display_unit|display_buffer[3][5] ;
-; display:display_unit|display_buffer[4][4]  ; Merged with display:display_unit|display_buffer[4][1] ;
-; display:display_unit|display_buffer[4][3]  ; Merged with display:display_unit|display_buffer[4][1] ;
-; display:display_unit|display_buffer[4][2]  ; Merged with display:display_unit|display_buffer[4][1] ;
-; display:display_unit|display_buffer[4][6]  ; Merged with display:display_unit|display_buffer[4][5] ;
-; display:display_unit|display_buffer[5][4]  ; Merged with display:display_unit|display_buffer[5][1] ;
-; display:display_unit|display_buffer[5][3]  ; Merged with display:display_unit|display_buffer[5][1] ;
-; display:display_unit|display_buffer[5][2]  ; Merged with display:display_unit|display_buffer[5][1] ;
-; display:display_unit|display_buffer[5][6]  ; Merged with display:display_unit|display_buffer[5][5] ;
-; morse:morse_decoder|state~8                ; Lost fanout                                           ;
-; morse:morse_decoder|state~9                ; Lost fanout                                           ;
-; morse:morse_decoder|state~10               ; Lost fanout                                           ;
-; Total Number of Removed Registers = 75     ;                                                       ;
-+--------------------------------------------+-------------------------------------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                             ;
-+-----------------------------------------+---------------------------+-----------------------------------------------------------------------------------+
-; Register name                           ; Reason for Removal        ; Registers Removed due to This Register                                            ;
-+-----------------------------------------+---------------------------+-----------------------------------------------------------------------------------+
-; morse:morse_decoder|received_pattern[4] ; Lost Fanouts              ; morse:morse_decoder|received_pattern[3], morse:morse_decoder|received_pattern[2], ;
-;                                         ;                           ; morse:morse_decoder|received_pattern[1], morse:morse_decoder|received_pattern[0], ;
-;                                         ;                           ; morse:morse_decoder|timer[31], morse:morse_decoder|timer[30],                     ;
-;                                         ;                           ; morse:morse_decoder|timer[29], morse:morse_decoder|timer[28],                     ;
-;                                         ;                           ; morse:morse_decoder|timer[27]                                                     ;
-; morse:morse_decoder|ascii_char[7]       ; Stuck at GND              ; display:display_unit|display_buffer[0][7],                                        ;
-;                                         ; due to stuck port data_in ; display:display_unit|display_buffer[1][7],                                        ;
-;                                         ;                           ; display:display_unit|display_buffer[2][7],                                        ;
-;                                         ;                           ; display:display_unit|display_buffer[3][7],                                        ;
-;                                         ;                           ; display:display_unit|display_buffer[4][7],                                        ;
-;                                         ;                           ; display:display_unit|display_buffer[5][7]                                         ;
-+-----------------------------------------+---------------------------+-----------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                           ;
++------------------------------------+-------------------------+----------------------------------------+
+; Register name                      ; Reason for Removal      ; Registers Removed due to This Register ;
++------------------------------------+-------------------------+----------------------------------------+
+; morse_input:u_input|morse_memory~6 ; Stuck at GND            ; morse_input:u_input|output_buffer[6]   ;
+;                                    ; due to stuck port clock ;                                        ;
+; morse_input:u_input|morse_memory~7 ; Stuck at GND            ; morse_input:u_input|output_buffer[7]   ;
+;                                    ; due to stuck port clock ;                                        ;
++------------------------------------+-------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -306,94 +763,52 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 108   ;
-; Number of registers using Synchronous Clear  ; 35    ;
+; Total registers                              ; 133   ;
+; Number of registers using Synchronous Clear  ; 104   ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 108   ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 27    ;
+; Number of registers using Clock Enable       ; 50    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------+
-; Inverted Register Statistics                        ;
-+-------------------------------------------+---------+
-; Inverted Register                         ; Fan out ;
-+-------------------------------------------+---------+
-; display:display_unit|HEX0[0]              ; 1       ;
-; display:display_unit|HEX0[1]              ; 1       ;
-; display:display_unit|HEX0[2]              ; 1       ;
-; display:display_unit|HEX0[3]              ; 1       ;
-; display:display_unit|HEX0[4]              ; 1       ;
-; display:display_unit|HEX0[5]              ; 1       ;
-; display:display_unit|HEX0[6]              ; 1       ;
-; display:display_unit|HEX1[0]              ; 1       ;
-; display:display_unit|HEX1[1]              ; 1       ;
-; display:display_unit|HEX1[2]              ; 1       ;
-; display:display_unit|HEX1[3]              ; 1       ;
-; display:display_unit|HEX1[4]              ; 1       ;
-; display:display_unit|HEX1[5]              ; 1       ;
-; display:display_unit|HEX1[6]              ; 1       ;
-; display:display_unit|HEX2[0]              ; 1       ;
-; display:display_unit|HEX2[1]              ; 1       ;
-; display:display_unit|HEX2[2]              ; 1       ;
-; display:display_unit|HEX2[3]              ; 1       ;
-; display:display_unit|HEX2[4]              ; 1       ;
-; display:display_unit|HEX2[5]              ; 1       ;
-; display:display_unit|HEX2[6]              ; 1       ;
-; display:display_unit|HEX3[0]              ; 1       ;
-; display:display_unit|HEX3[1]              ; 1       ;
-; display:display_unit|HEX3[2]              ; 1       ;
-; display:display_unit|HEX3[3]              ; 1       ;
-; display:display_unit|HEX3[4]              ; 1       ;
-; display:display_unit|HEX3[5]              ; 1       ;
-; display:display_unit|HEX3[6]              ; 1       ;
-; display:display_unit|HEX4[0]              ; 1       ;
-; display:display_unit|HEX4[1]              ; 1       ;
-; display:display_unit|HEX4[2]              ; 1       ;
-; display:display_unit|HEX4[3]              ; 1       ;
-; display:display_unit|HEX4[4]              ; 1       ;
-; display:display_unit|HEX4[5]              ; 1       ;
-; display:display_unit|HEX4[6]              ; 1       ;
-; display:display_unit|HEX5[0]              ; 1       ;
-; display:display_unit|HEX5[1]              ; 1       ;
-; display:display_unit|HEX5[2]              ; 1       ;
-; display:display_unit|HEX5[3]              ; 1       ;
-; display:display_unit|HEX5[4]              ; 1       ;
-; display:display_unit|HEX5[5]              ; 1       ;
-; display:display_unit|HEX5[6]              ; 1       ;
-; display:display_unit|display_buffer[0][5] ; 5       ;
-; display:display_unit|display_buffer[1][5] ; 5       ;
-; display:display_unit|display_buffer[2][5] ; 5       ;
-; display:display_unit|display_buffer[3][5] ; 5       ;
-; display:display_unit|display_buffer[4][5] ; 5       ;
-; display:display_unit|display_buffer[5][5] ; 5       ;
-; morse:morse_decoder|ascii_char[5]         ; 6       ;
-; Total number of inverted registers = 49   ;         ;
-+-------------------------------------------+---------+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; morse_input:u_input|reset_stable       ; 11      ;
+; morse_input:u_input|morse_stable       ; 12      ;
+; morse_input:u_input|reset_prev         ; 3       ;
+; morse_input:u_input|morse_prev         ; 3       ;
+; Total number of inverted registers = 4 ;         ;
++----------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
-; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |morse_top|morse:morse_decoder|received_pattern[3] ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |morse_top|morse:morse_decoder|space_timer         ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; No         ; |morse_top|morse:morse_decoder|Selector66          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |morse_top|morse_input:u_input|debounce_counter_morse[13] ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |morse_top|morse_input:u_input|debounce_counter_reset[10] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |morse_top|morse_input:u_input|press_counter[15]          ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |morse_top|morse_input:u_input|release_counter[2]         ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |morse_top|morse_input:u_input|morse_pattern[3]           ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |morse_top|morse_input:u_input|output_buffer[0]           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
 
 
 +------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: morse:morse_decoder ;
+; Parameter Settings for User Entity Instance: morse_input:u_input ;
 +----------------+-----------+-------------------------------------+
 ; Parameter Name ; Value     ; Type                                ;
 +----------------+-----------+-------------------------------------+
-; DOT_TIME       ; 50000000  ; Signed Integer                      ;
-; DASH_TIME      ; 100000000 ; Signed Integer                      ;
-; SYMBOL_SPACE   ; 100000000 ; Signed Integer                      ;
-; WORD_SPACE     ; 200000000 ; Signed Integer                      ;
+; DOT_TIME       ; 25000000  ; Signed Integer                      ;
+; DASH_TIME      ; 75000000  ; Signed Integer                      ;
+; SYMBOL_GAP     ; 25000000  ; Signed Integer                      ;
+; LETTER_GAP     ; 125000000 ; Signed Integer                      ;
 +----------------+-----------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -403,27 +818,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 108                         ;
-;     CLR               ; 49                          ;
-;     CLR SCLR          ; 32                          ;
-;     ENA CLR           ; 24                          ;
-;     ENA CLR SCLR      ; 3                           ;
-; arriav_lcell_comb     ; 137                         ;
-;     arith             ; 32                          ;
-;         1 data inputs ; 32                          ;
-;     extend            ; 1                           ;
-;         7 data inputs ; 1                           ;
-;     normal            ; 104                         ;
-;         1 data inputs ; 45                          ;
-;         2 data inputs ; 14                          ;
-;         3 data inputs ; 30                          ;
-;         4 data inputs ; 9                           ;
-;         5 data inputs ; 3                           ;
-;         6 data inputs ; 3                           ;
-; boundary_port         ; 46                          ;
+; arriav_ff             ; 133                         ;
+;     ENA               ; 10                          ;
+;     ENA SCLR          ; 40                          ;
+;     SCLR              ; 64                          ;
+;     plain             ; 19                          ;
+; arriav_lcell_comb     ; 195                         ;
+;     arith             ; 104                         ;
+;         1 data inputs ; 104                         ;
+;     normal            ; 91                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 3                           ;
+;         3 data inputs ; 5                           ;
+;         4 data inputs ; 29                          ;
+;         5 data inputs ; 25                          ;
+;         6 data inputs ; 24                          ;
+; boundary_port         ; 18                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 4.10                        ;
-; Average LUT depth     ; 1.84                        ;
+; Average LUT depth     ; 2.86                        ;
 +-----------------------+-----------------------------+
 
 
@@ -442,38 +856,48 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Mon Oct 06 23:41:24 2025
+    Info: Processing started: Tue Dec 16 14:23:35 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off morse -c morse
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file morse.v
-    Info (12023): Found entity 1: morse File: D:/Repos/altera_morse_decoder/src/morse.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file display.v
-    Info (12023): Found entity 1: display File: D:/Repos/altera_morse_decoder/src/display.v Line: 1
+Warning (12019): Can't analyze file -- file morse.v is missing
+Warning (12019): Can't analyze file -- file display.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file morse_top.v
     Info (12023): Found entity 1: morse_top File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file morse_input.v
+    Info (12023): Found entity 1: morse_input File: D:/Repos/altera_morse_decoder/src/morse_input.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file morse_to_hex.v
+    Info (12023): Found entity 1: morse_to_hex File: D:/Repos/altera_morse_decoder/src/morse_to_hex.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file seven_seg_driver.v
+    Info (12023): Found entity 1: seven_seg_driver File: D:/Repos/altera_morse_decoder/src/seven_seg_driver.v Line: 1
 Info (12127): Elaborating entity "morse_top" for the top level hierarchy
-Info (12128): Elaborating entity "morse" for hierarchy "morse:morse_decoder" File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 27
-Warning (10036): Verilog HDL or VHDL warning at morse.v(40): object "morse_rom" assigned a value but never read File: D:/Repos/altera_morse_decoder/src/morse.v Line: 40
-Warning (10855): Verilog HDL warning at morse.v(42): initial value for variable morse_rom should be constant File: D:/Repos/altera_morse_decoder/src/morse.v Line: 42
-Warning (10230): Verilog HDL assignment warning at morse.v(158): truncated value with size 32 to match size of target (3) File: D:/Repos/altera_morse_decoder/src/morse.v Line: 158
-Warning (10230): Verilog HDL assignment warning at morse.v(97): truncated value with size 32 to match size of target (8) File: D:/Repos/altera_morse_decoder/src/morse.v Line: 97
-Warning (10230): Verilog HDL assignment warning at morse.v(99): truncated value with size 32 to match size of target (8) File: D:/Repos/altera_morse_decoder/src/morse.v Line: 99
-Warning (10030): Net "morse_rom[0..35]" at morse.v(40) has no driver or initial value, using a default initial value '0' File: D:/Repos/altera_morse_decoder/src/morse.v Line: 40
-Info (12128): Elaborating entity "display" for hierarchy "display:display_unit" File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 41
-Warning (10230): Verilog HDL assignment warning at display.v(122): truncated value with size 32 to match size of target (3) File: D:/Repos/altera_morse_decoder/src/display.v Line: 122
+Info (12128): Elaborating entity "morse_input" for hierarchy "morse_input:u_input" File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 18
+Warning (10036): Verilog HDL or VHDL warning at morse_input.v(29): object "morse_released" assigned a value but never read File: D:/Repos/altera_morse_decoder/src/morse_input.v Line: 29
+Warning (10030): Net "morse_memory.data_a" at morse_input.v(32) has no driver or initial value, using a default initial value '0' File: D:/Repos/altera_morse_decoder/src/morse_input.v Line: 32
+Warning (10030): Net "morse_memory.waddr_a" at morse_input.v(32) has no driver or initial value, using a default initial value '0' File: D:/Repos/altera_morse_decoder/src/morse_input.v Line: 32
+Warning (10030): Net "morse_memory.we_a" at morse_input.v(32) has no driver or initial value, using a default initial value '0' File: D:/Repos/altera_morse_decoder/src/morse_input.v Line: 32
+Info (12128): Elaborating entity "morse_to_hex" for hierarchy "morse_to_hex:u_hex" File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 24
+Info (12128): Elaborating entity "seven_seg_driver" for hierarchy "seven_seg_driver:u_driver" File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 32
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "morse_input:u_input|morse_memory" is uninferred due to inappropriate RAM size File: D:/Repos/altera_morse_decoder/src/morse_input.v Line: 32
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "D:/Repos/altera_morse_decoder/src/db/morse.ram0_morse_input_3485753f.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "leds[3]" is stuck at GND File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 7
+    Warning (13410): Pin "leds[4]" is stuck at GND File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 7
+    Warning (13410): Pin "leds[5]" is stuck at GND File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 7
+    Warning (13410): Pin "leds[6]" is stuck at GND File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 7
+    Warning (13410): Pin "leds[7]" is stuck at GND File: D:/Repos/altera_morse_decoder/src/morse_top.v Line: 7
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 40 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 176 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 213 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
-    Info (21059): Implemented 43 output pins
-    Info (21061): Implemented 130 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4854 megabytes
-    Info: Processing ended: Mon Oct 06 23:41:37 2025
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:17
+    Info (21059): Implemented 15 output pins
+    Info (21061): Implemented 195 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 14 warnings
+    Info: Peak virtual memory: 4852 megabytes
+    Info: Processing ended: Tue Dec 16 14:23:43 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:16
 
 

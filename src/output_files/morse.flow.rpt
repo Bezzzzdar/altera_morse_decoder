@@ -1,5 +1,5 @@
 Flow report for morse
-Mon Oct 06 23:42:44 2025
+Tue Dec 16 14:24:31 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,16 +40,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Mon Oct 06 23:42:44 2025       ;
+; Flow Status                     ; Successful - Tue Dec 16 14:24:31 2025       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; morse                                       ;
 ; Top-level Entity Name           ; morse_top                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 54 / 32,070 ( < 1 % )                       ;
-; Total registers                 ; 119                                         ;
-; Total pins                      ; 46 / 457 ( 10 % )                           ;
+; Logic utilization (in ALMs)     ; 111 / 32,070 ( < 1 % )                      ;
+; Total registers                 ; 169                                         ;
+; Total pins                      ; 18 / 457 ( 4 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
 ; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/06/2025 23:41:25 ;
+; Start date & time ; 12/16/2025 14:23:36 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; morse               ;
 +-------------------+---------------------+
@@ -78,8 +78,9 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 2543960877323.175978328518476          ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 57651961812043.176588421611356         ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
+; EDA_RUN_TOOL_AUTOMATICALLY          ; On                                     ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --            ; --          ; eda_simulation ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --             ;
@@ -87,6 +88,8 @@ refer to the applicable agreement for further details.
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; morse_top   ; Top            ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; morse_top   ; Top            ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; morse_top   ; Top            ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --             ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --             ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --             ;
 ; TOP_LEVEL_ENTITY                    ; morse_top                              ; morse         ; --          ; --             ;
 +-------------------------------------+----------------------------------------+---------------+-------------+----------------+
@@ -97,12 +100,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4854 MB             ; 00:00:16                           ;
-; Fitter               ; 00:00:47     ; 1.1                     ; 6779 MB             ; 00:01:21                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 4835 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.1                     ; 5139 MB             ; 00:00:04                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4741 MB             ; 00:00:01                           ;
-; Total                ; 00:01:11     ; --                      ; --                  ; 00:01:47                           ;
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4852 MB             ; 00:00:15                           ;
+; Fitter               ; 00:00:35     ; 1.0                     ; 6818 MB             ; 00:01:38                           ;
+; Assembler            ; 00:00:05     ; 1.0                     ; 4830 MB             ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:04     ; 1.1                     ; 5166 MB             ; 00:00:04                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4744 MB             ; 00:00:01                           ;
+; Total                ; 00:00:53     ; --                      ; --                  ; 00:02:03                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

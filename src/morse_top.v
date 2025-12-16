@@ -1,46 +1,33 @@
-module morse_top(
-    input wire clk,              // Тактовый сигнал
-    input wire reset,            // Сброс (активный низкий)
-    input wire morse_in,         // Ввод Морзе-кода
-    output wire [6:0] hex0,      // 7-сегментный индикатор 0
-    output wire [6:0] hex1,      // 7-сегментный индикатор 1
-    output wire [6:0] hex2,      // 7-сегментный индикатор 2
-    output wire [6:0] hex3,      // 7-сегментный индикатор 3
-    output wire [6:0] hex4,      // 7-сегментный индикатор 4
-    output wire [6:0] hex5,      // 7-сегментный индикатор 5
-    output wire button_led       // Индикатор нажатия кнопки
+module morse_top (
+    input clk,
+    input reset_btn,
+    input morse_btn,
+    output [6:0] hex0,
+    output [7:0] leds
 );
+    wire [7:0] output_buffer;
+    wire [6:0] seg_code;
 
-// Проводники для соединения модулей
-wire [7:0] ascii_char;
-wire char_valid;
-wire button_pressed;
+    // Модуль приёма и декодирования
+    morse_input u_input (
+        .clk(clk),
+        .reset_btn(reset_btn),
+        .morse_btn(morse_btn),
+        .output_buffer(output_buffer),
+        .leds(leds)
+    );
 
-// Декодер Морзе
-morse morse_decoder(
-    .clk(clk),
-    .reset(reset),
-    .morse_in(morse_in),
-    .ascii_char(ascii_char),
-    .char_valid(char_valid),
-    .button_pressed(button_pressed)
-);
+    // Модуль преобразования символа в 7-битный код
+    morse_to_hex u_hex (
+        .input_char(output_buffer),
+        .hex0(seg_code)
+    );
 
-// Дисплейный модуль
-display display_unit(
-    .clk(clk),
-    .reset(reset),
-    .ascii_char(ascii_char),
-    .char_valid(char_valid),
-    .HEX0(hex0),
-    .HEX1(hex1),
-    .HEX2(hex2),
-    .HEX3(hex3),
-    .HEX4(hex4),
-    .HEX5(hex5)
-);
-
-// Индикация нажатия кнопки
-assign button_led = button_pressed;
-
+    // Модуль управления семисегментным индикатором
+    seven_seg_driver u_driver (
+        .clk(clk),
+		  .reset_btn(reset_btn),
+		  .hex_in(seg_code),
+        .hex0(hex0)
+    );
 endmodule
